@@ -2303,12 +2303,27 @@ for (var i = 0; i < spaceremove.length; i++) {
 
 
 var string1 = generaterotation(primestring);
-var string2 = generaterotation(spaceremovestring);
+var string2 = generaterotation1(spaceremovestring);
 
-//alert(string1);
-//alert(string2);
+var restring1="";
+var restring2="";
+for (var i = 0; i < string1.length; i++) {
+  restring1 += String(string1[i]); // Append each number as string
+}
 
-if(string1 != string2){
+for (var i = 0; i < string2.length; i++) {
+  if(i == string2.length-1){
+    restring2 += String(string2[i]); // Append each number as string
+  }
+  else restring2 += String(string2[i])+" "; // Append each number as string
+}
+
+// alert(restring1);
+// alert(restring2);
+
+// alert (restring1.includes(restring2));
+
+if(!restring1.includes(restring2)){
   form.solomon.value = form.forte.value + "B";
 }
 else form.solomon.value = form.forte.value;
@@ -2351,6 +2366,23 @@ else form.solomon.value = form.forte.value;
   // }
 }
 
+
+function generaterotation1 (userSetInput) {
+  //alert(userSetInput);
+  let checkedNumbers = userSetInput.trim().split(',').map(Number);
+  
+  // Sort the selected numbers
+  checkedNumbers.sort((a, b) => a - b);
+ 
+  const differences = [];
+  for (let i = 0; i < checkedNumbers.length; i++) {
+      const nextIndex = (i + 1) % checkedNumbers.length;
+      let diff = checkedNumbers[nextIndex] - checkedNumbers[i];
+      if (diff < 0) diff += 12;
+      differences.push(diff);
+  }
+  return differences;
+}
 function generaterotation (userSetInput) {
   //alert(userSetInput);
   let checkedNumbers = userSetInput.trim().split(',').map(Number);
@@ -2365,6 +2397,7 @@ function generaterotation (userSetInput) {
       if (diff < 0) diff += 12;
       differences.push(diff);
   }
+  //alert(differences);
 
   const seqset = differences.join(' ');
   const calculatedPermutations = generatePermutations(differences);
