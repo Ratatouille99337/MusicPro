@@ -2308,7 +2308,7 @@ var string2 = generaterotation(spaceremovestring);
 //alert(string1);
 //alert(string2);
 
-if(string1 == string2){
+if(string1 != string2){
   form.solomon.value = form.forte.value + "B";
 }
 else form.solomon.value = form.forte.value;
