@@ -2305,8 +2305,8 @@ for (var i = 0; i < spaceremove.length; i++) {
 var string1 = generaterotation(primestring);
 var string2 = generaterotation(spaceremovestring);
 
-alert(string1);
-alert(string2);
+//alert(string1);
+//alert(string2);
 
 if(string1 == string2){
   form.solomon.value = form.forte.value + "B";
